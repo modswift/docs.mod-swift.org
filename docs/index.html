@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="None">
+  <meta name="author" content="ZeeZide GmbH">
+  <link rel="shortcut icon" href="./img/favicon.ico">
+  <title>Introduction - mod_swift</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="./css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="./css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="./css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Introduction";
+    var mkdocs_page_input_path = "index.md";
+    var mkdocs_page_url = "/";
+  </script>
+  
+  <script src="./js/jquery-2.1.1.min.js"></script>
+  <script src="./js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="./js/highlight.pack.js"></script> 
+  
+  <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-3266252-11', 'mod-swift.org');
+      ga('send', 'pageview');
+  </script>
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="." class="icon icon-home"> mod_swift</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1 current">
+		
+    <a class="current" href=".">Introduction</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#mod_swift-documentation">mod_swift Documentation</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#what-is-an-apache-module">What is an Apache module?</a></li>
+        
+            <li><a class="toctree-l3" href="#installation">Installation</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="about/">About</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href=".">mod_swift</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Introduction</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        <a href="https://github.com/modswift/edit/master/docs/index.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="mod_swift-documentation">mod_swift Documentation</h1>
+<p><strong>mod_swift</strong> is a technology demo which shows how to write native modules
+for the
+<a href="https://httpd.apache.org">Apache Web Server</a>
+in the 
+<a href="http://swift.org/">Swift</a>
+programming language.
+The demo includes a 
+<a href="https://github.com/AlwaysRightInstitute/mod_swift/blob/master/mod_swift/README.md">C module to load Swift modules</a>,
+a <a href="https://github.com/AlwaysRightInstitute/mod_swift/blob/master/mods_baredemo/README.md">basic demo module</a>,
+the <a href="https://github.com/AlwaysRightInstitute/mod_swift/blob/master/ApacheExpress/README.md">ApacheExpress</a> framework which provides an Express 
+like API for mod_swift,
+a <a href="https://github.com/AlwaysRightInstitute/mod_swift/blob/master/mods_expressdemo/README.md">demo for ApacheExpress</a>,
+a <a href="https://github.com/AlwaysRightInstitute/mod_swift/blob/master/mods_todomvc/README.md">Todo MVC</a> backend,
+and a few supporting libraries
+(such as Freddy or Noze.io <a href="https://github.com/AlwaysRightInstitute/mod_swift/blob/master/ThirdParty/mustache/README.md">Mustache</a>).</p>
+<p><center><em>Server Side Swift the right way.</em></center></p>
+<h2 id="what-is-an-apache-module">What is an Apache module?</h2>
+<p>Apache is a highly modular and efficient server framework. The httpd
+daemon itself is quite tiny and pretty much all webserver functionality is
+actually implemented in the form of
+<a href="https://httpd.apache.org/docs/2.4/mod/">modules</a>.
+Be it thread handling, access control, mime detection or content negotation -
+all of that is implemented as modules. And can be replaced by own modules!</p>
+<p>The Apache core modules are written in portable C. Some modules are built
+right into the server, but most are loaded as
+<a href="https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/DynamicLibraries/000-Introduction/Introduction.html">dynamic libraries</a>.
+Which ones is specified by the user in the
+<a href="https://httpd.apache.org/docs/2.4/configuring.html">configuration file</a>,
+for example:</p>
+<pre><code>LoadModule authz_core_module /usr/libexec/apache2/mod_authz_core.so
+LoadModule mime_module       /usr/libexec/apache2/mod_mime.so
+</code></pre>
+<p>Now with <strong>mod_swift</strong> you can write such modules using the
+<a href="http://swift.org/">Swift</a>
+programming language. Enter:</p>
+<pre><code>LoadSwiftModule ApacheMain /usr/libexec/apache2/mods_demo.so
+</code></pre>
+<p>This is a little different to something like <code>mod_php</code> which enables Apache
+to directly interpret PHP scripts. <code>mod_php</code> itself is C software and a single
+module.
+Since Swift compiles down to regular executable binaries,
+and because Swift has excellent 
+<a href="https://developer.apple.com/library/content/documentation/Swift/Conceptual/BuildingCocoaApps/InteractingWithCAPIs.html#//apple_ref/doc/uid/TP40014216-CH8-ID17">C integration</a>,
+you can write arbitrary modules with <strong>mod_swift</strong> which behave just like the
+regular C modules.</p>
+<h2 id="installation">Installation</h2>
+<p>Competently unleash value-added deliverables vis-a-vis error-free e-commerce. Objectively promote one-to-one e-business vis-a-vis standardized process improvements. Collaboratively visualize wireless leadership rather than market-driven mindshare. Seamlessly seize client-based models via pandemic channels. </p>
+<p>Intrinsicly customize backend partnerships whereas enabled materials. Collaboratively envisioneer B2C opportunities for quality experiences. Proactively predominate long-term high-impact users before value-added relationships.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="about/" class="btn btn-neutral float-right" title="About">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+    
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/modswift/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+      
+        <span style="margin-left: 15px"><a href="about/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script src="./js/theme.js"></script>
+
+</body>
+</html>
+
+<!--
+MkDocs version : 0.16.3
+Build Date UTC : 2017-05-10 13:25:54
+-->

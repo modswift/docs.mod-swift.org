@@ -1,0 +1,44 @@
+{
+    "docs": [
+        {
+            "location": "/", 
+            "text": "mod_swift Documentation\n\n\nmod_swift\n is a technology demo which shows how to write native modules\nfor the\n\nApache Web Server\n\nin the \n\nSwift\n\nprogramming language.\nThe demo includes a \n\nC module to load Swift modules\n,\na \nbasic demo module\n,\nthe \nApacheExpress\n framework which provides an Express \nlike API for mod_swift,\na \ndemo for ApacheExpress\n,\na \nTodo MVC\n backend,\nand a few supporting libraries\n(such as Freddy or Noze.io \nMustache\n).\n\n\nServer Side Swift the right way.\n\n\nWhat is an Apache module?\n\n\nApache is a highly modular and efficient server framework. The httpd\ndaemon itself is quite tiny and pretty much all webserver functionality is\nactually implemented in the form of\n\nmodules\n.\nBe it thread handling, access control, mime detection or content negotation -\nall of that is implemented as modules. And can be replaced by own modules!\n\n\nThe Apache core modules are written in portable C. Some modules are built\nright into the server, but most are loaded as\n\ndynamic libraries\n.\nWhich ones is specified by the user in the\n\nconfiguration file\n,\nfor example:\n\n\nLoadModule authz_core_module /usr/libexec/apache2/mod_authz_core.so\nLoadModule mime_module       /usr/libexec/apache2/mod_mime.so\n\n\n\nNow with \nmod_swift\n you can write such modules using the\n\nSwift\n\nprogramming language. Enter:\n\n\nLoadSwiftModule ApacheMain /usr/libexec/apache2/mods_demo.so\n\n\n\nThis is a little different to something like \nmod_php\n which enables Apache\nto directly interpret PHP scripts. \nmod_php\n itself is C software and a single\nmodule.\nSince Swift compiles down to regular executable binaries,\nand because Swift has excellent \n\nC integration\n,\nyou can write arbitrary modules with \nmod_swift\n which behave just like the\nregular C modules.\n\n\nInstallation\n\n\nCompetently unleash value-added deliverables vis-a-vis error-free e-commerce. Objectively promote one-to-one e-business vis-a-vis standardized process improvements. Collaboratively visualize wireless leadership rather than market-driven mindshare. Seamlessly seize client-based models via pandemic channels. \n\n\nIntrinsicly customize backend partnerships whereas enabled materials. Collaboratively envisioneer B2C opportunities for quality experiences. Proactively predominate long-term high-impact users before value-added relationships.", 
+            "title": "Introduction"
+        }, 
+        {
+            "location": "/#mod_swift-documentation", 
+            "text": "mod_swift  is a technology demo which shows how to write native modules\nfor the Apache Web Server \nin the  Swift \nprogramming language.\nThe demo includes a  C module to load Swift modules ,\na  basic demo module ,\nthe  ApacheExpress  framework which provides an Express \nlike API for mod_swift,\na  demo for ApacheExpress ,\na  Todo MVC  backend,\nand a few supporting libraries\n(such as Freddy or Noze.io  Mustache ).  Server Side Swift the right way.", 
+            "title": "mod_swift Documentation"
+        }, 
+        {
+            "location": "/#what-is-an-apache-module", 
+            "text": "Apache is a highly modular and efficient server framework. The httpd\ndaemon itself is quite tiny and pretty much all webserver functionality is\nactually implemented in the form of modules .\nBe it thread handling, access control, mime detection or content negotation -\nall of that is implemented as modules. And can be replaced by own modules!  The Apache core modules are written in portable C. Some modules are built\nright into the server, but most are loaded as dynamic libraries .\nWhich ones is specified by the user in the configuration file ,\nfor example:  LoadModule authz_core_module /usr/libexec/apache2/mod_authz_core.so\nLoadModule mime_module       /usr/libexec/apache2/mod_mime.so  Now with  mod_swift  you can write such modules using the Swift \nprogramming language. Enter:  LoadSwiftModule ApacheMain /usr/libexec/apache2/mods_demo.so  This is a little different to something like  mod_php  which enables Apache\nto directly interpret PHP scripts.  mod_php  itself is C software and a single\nmodule.\nSince Swift compiles down to regular executable binaries,\nand because Swift has excellent  C integration ,\nyou can write arbitrary modules with  mod_swift  which behave just like the\nregular C modules.", 
+            "title": "What is an Apache module?"
+        }, 
+        {
+            "location": "/#installation", 
+            "text": "Competently unleash value-added deliverables vis-a-vis error-free e-commerce. Objectively promote one-to-one e-business vis-a-vis standardized process improvements. Collaboratively visualize wireless leadership rather than market-driven mindshare. Seamlessly seize client-based models via pandemic channels.   Intrinsicly customize backend partnerships whereas enabled materials. Collaboratively envisioneer B2C opportunities for quality experiences. Proactively predominate long-term high-impact users before value-added relationships.", 
+            "title": "Installation"
+        }, 
+        {
+            "location": "/about/", 
+            "text": "Apache modules in Swift\n.\n\n\nContact\n\n\nHey, we love feedback. Join the mailing list, Slack channel or just drop us\nan email to tell us why this is crap (or not?).\n\n\n\n\nMailing List\n\n\nSlack\n\n\ninfo@mod-swift.org\n\n\n\n\nStatus\n\n\n\n\n\n\nNot for production\n. Consider the version numbers.\n\n\n\n\n\n\nWe chose the traditional Swift approach:\n  Make something barely usable, though demoable,\n  and release it with a 3.0 version tag.\n  Then hope that the community kicks in and fills open spots.\n\n\n\n\n\n\nIt already has leftpad.\n\n\n\n\n\n\nImplements primarily the happy path. Errors will error. Presumably this\n  will improve over time.\n\n\n\n\n\n\nWho\n\n\nmod_swift is brought to you by the\n\nZeeZide\n GmbH.\n\nImprint\n.", 
+            "title": "About"
+        }, 
+        {
+            "location": "/about/#contact", 
+            "text": "Hey, we love feedback. Join the mailing list, Slack channel or just drop us\nan email to tell us why this is crap (or not?).   Mailing List  Slack  info@mod-swift.org", 
+            "title": "Contact"
+        }, 
+        {
+            "location": "/about/#status", 
+            "text": "Not for production . Consider the version numbers.    We chose the traditional Swift approach:\n  Make something barely usable, though demoable,\n  and release it with a 3.0 version tag.\n  Then hope that the community kicks in and fills open spots.    It already has leftpad.    Implements primarily the happy path. Errors will error. Presumably this\n  will improve over time.", 
+            "title": "Status"
+        }, 
+        {
+            "location": "/about/#who", 
+            "text": "mod_swift is brought to you by the ZeeZide  GmbH. Imprint .", 
+            "title": "Who"
+        }
+    ]
+}
