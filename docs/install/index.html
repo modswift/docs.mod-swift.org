@@ -8,7 +8,7 @@
   
   <meta name="author" content="ZeeZide GmbH">
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>About - mod_swift</title>
+  <title>Installation - mod_swift</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "About";
-    var mkdocs_page_input_path = "about.md";
-    var mkdocs_page_url = "/about/";
+    var mkdocs_page_name = "Installation";
+    var mkdocs_page_input_path = "install.md";
+    var mkdocs_page_url = "/install/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js"></script>
@@ -62,9 +62,27 @@
     <a class="" href="..">Introduction</a>
 	    </li>
           
-            <li class="toctree-l1">
+            <li class="toctree-l1 current">
 		
-    <a class="" href="../install/">Installation</a>
+    <a class="current" href="./">Installation</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#mod_swift-installation">mod_swift Installation</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#install-on-macos-using-homebrew">Install on macOS using Homebrew</a></li>
+        
+            <li><a class="toctree-l3" href="#install-on-linux-or-macos-wo-homebrew">Install on Linux (or macOS w/o Homebrew)</a></li>
+        
+            <li><a class="toctree-l3" href="#check-whether-the-installation-is-ok">Check whether the installation is OK</a></li>
+        
+            <li><a class="toctree-l3" href="#troubleshooting">Troubleshooting</a></li>
+        
+        </ul>
+    
+
+    </ul>
 	    </li>
           
             <li class="toctree-l1">
@@ -102,18 +120,9 @@
     <a class="" href="../links/">Link Collection</a>
 	    </li>
           
-            <li class="toctree-l1 current">
+            <li class="toctree-l1">
 		
-    <a class="current" href="./">About</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l2"><a href="#contact">Contact</a></li>
-    
-
-    <li class="toctree-l2"><a href="#who">Who</a></li>
-    
-
-    </ul>
+    <a class="" href="../about/">About</a>
 	    </li>
           
         </ul>
@@ -138,10 +147,10 @@
     
       
     
-    <li>About</li>
+    <li>Installation</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/modswift/edit/master/docs/about.md"
+        <a href="https://github.com/modswift/edit/master/docs/install.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -151,19 +160,68 @@
           <div role="main">
             <div class="section">
               
-                <p><center><em>Apache modules in Swift</em>.</center></p>
-<h3 id="contact">Contact</h3>
-<p>Hey, we love feedback. Join the mailing list, Slack channel or just drop us
-an email to tell us why this is crap (or not?).</p>
-<ul>
-<li><a href="https://groups.google.com/d/forum/mod_swift">Mailing List</a></li>
-<li><a href="http://slack.noze.io">Slack</a></li>
-<li><a href="mailto:info@mod-swift.org">info@mod-swift.org</a></li>
-</ul>
-<h3 id="who">Who</h3>
-<p>mod_swift is brought to you by the
-<a href="http://zeezide.de">ZeeZide</a> GmbH.
-<a href="http://zeezide.com/contact.html">Imprint</a>.</p>
+                <h1 id="mod_swift-installation">mod_swift Installation</h1>
+<p>mod_swift should install fine on pretty much any Unix system that can run
+Swift and Apache 2.4. Including exotic setups like Raspberry Pi systems.</p>
+<p>We also provide a macOS Homebrew tap which makes it really easy to install
+mod_swift and its dependencies on macOS. We highly recommend that over a
+custom install.</p>
+<p>On the Linux side we test w/ Ubuntu Trusty and Xenial, though it should work
+pretty much anywhere.</p>
+<h2 id="install-on-macos-using-homebrew">Install on macOS using Homebrew</h2>
+<p>Got no Homebrew? <a href="https://brew.sh">Get it!</a></p>
+<p>Before you install mod_swift, we highly recommend that you install or reinstall
+the Homebrew Apache w/ HTTP/2 and the MPM event module:</p>
+<pre><code>brew tap homebrew/apache
+brew reinstall httpd24 --with-mpm-event --with-http2
+</code></pre>
+<p>You can also add <code>--with-privileged-ports</code> if you want to use such.</p>
+<p>Then add the mod_swift tap and install mod_swift:</p>
+<pre><code>brew tap modswift/mod_swift
+brew install mod_swift
+</code></pre>
+<p><em>(yes, the account is just modswift w/o underscore due to GitHub limitations)</em></p>
+<h2 id="install-on-linux-or-macos-wo-homebrew">Install on Linux (or macOS w/o Homebrew)</h2>
+<p>On macOS: We strongly advise that you rather use Homebrew, more importantly
+          the Apache provided by Homebrew.</p>
+<p>Ubuntu packages required (assuming you have Swift 3 installed already):</p>
+<pre><code>sudo apt-get install \
+   pkg-config libapr1-dev libaprutil1-dev \
+   libxml2 apache2 apache2-dev \
+   libnghttp2-dev \
+   libaprutil1-dbd-sqlite3 \
+   libaprutil1-dbd-pgsql
+</code></pre>
+<p>Install:</p>
+<pre><code>sudo make install
+</code></pre>
+<p>That puts mod_swift into <code>/usr/local</code>. If you want to have it in <code>/usr</code>, do:</p>
+<pre><code>sudo make prefix=/usr install
+</code></pre>
+<h2 id="check-whether-the-installation-is-ok">Check whether the installation is OK</h2>
+<p>You can call <code>swift apache validate</code> to make sure the installation is OK:</p>
+<pre><code>$ swift apache validate
+The Swift Apache build environment looks sound.
+
+srcroot:   /Users/helge/dev/Swift/Apex3
+module:    mods_Apex3
+config:    debug
+product:   /Users/helge/dev/Swift/Apex3/.build/mods_Apex3.so
+apxs:      /usr/local/bin/apxs
+mod_swift: /usr/local
+swift:     3.1.0
+cert:      self-signed-mod_swift-localhost-server.crt
+http/2:    yes
+</code></pre>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<p>If something isn't working in a Homebrew setup, check whether:</p>
+<pre><code>brew doctor
+</code></pre>
+<p>outputs anything unusual.</p>
+<p>If you need any help, feel free to ask on the
+<a href="https://groups.google.com/d/forum/mod_swift">Mailing List</a>
+or our
+<a href="http://slack.noze.io">Slack channel</a>.</p>
               
             </div>
           </div>
@@ -171,8 +229,10 @@ an email to tell us why this is crap (or not?).</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
+        <a href="../usage/" class="btn btn-neutral float-right" title="Using mod_swift">Next <span class="icon icon-circle-arrow-right"></span></a>
       
-        <a href="../links/" class="btn btn-neutral" title="Link Collection"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+        <a href=".." class="btn btn-neutral" title="Introduction"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -200,8 +260,10 @@ an email to tell us why this is crap (or not?).</p>
           <a href="https://github.com/modswift/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../links/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
       
+      
+        <span style="margin-left: 15px"><a href="../usage/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

@@ -8,7 +8,7 @@
   
   <meta name="author" content="ZeeZide GmbH">
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>About - mod_swift</title>
+  <title>ApacheExpress - mod_swift</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "About";
-    var mkdocs_page_input_path = "about.md";
-    var mkdocs_page_url = "/about/";
+    var mkdocs_page_name = "ApacheExpress";
+    var mkdocs_page_input_path = "apacheexpress.md";
+    var mkdocs_page_url = "/apacheexpress/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js"></script>
@@ -82,9 +82,15 @@
     <a class="" href="../tools/">Tools Reference</a>
 	    </li>
           
-            <li class="toctree-l1">
+            <li class="toctree-l1 current">
 		
-    <a class="" href="../apacheexpress/">ApacheExpress</a>
+    <a class="current" href="./">ApacheExpress</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#apacheexpress">ApacheExpress</a></li>
+    
+
+    </ul>
 	    </li>
           
             <li class="toctree-l1">
@@ -102,18 +108,9 @@
     <a class="" href="../links/">Link Collection</a>
 	    </li>
           
-            <li class="toctree-l1 current">
+            <li class="toctree-l1">
 		
-    <a class="current" href="./">About</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l2"><a href="#contact">Contact</a></li>
-    
-
-    <li class="toctree-l2"><a href="#who">Who</a></li>
-    
-
-    </ul>
+    <a class="" href="../about/">About</a>
 	    </li>
           
         </ul>
@@ -138,10 +135,10 @@
     
       
     
-    <li>About</li>
+    <li>ApacheExpress</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/modswift/edit/master/docs/about.md"
+        <a href="https://github.com/modswift/edit/master/docs/apacheexpress.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -151,19 +148,36 @@
           <div role="main">
             <div class="section">
               
-                <p><center><em>Apache modules in Swift</em>.</center></p>
-<h3 id="contact">Contact</h3>
-<p>Hey, we love feedback. Join the mailing list, Slack channel or just drop us
-an email to tell us why this is crap (or not?).</p>
+                <h1 id="apacheexpress">ApacheExpress</h1>
+<p><a href="http://apacheexpress.io/">ApacheExpress</a> is a framework layering on top of 
+mod_swift.
+It makes it very easy to quickly build reliable and feature rich Swift server
+applications from within Xcode or using the Swift Package Manager.
+It supports convenient database access using Apache mod_dbd.
+And well, can be used together with all the other regular Apache modules.</p>
+<p>Example:</p>
+<pre><code class="swift">public func ApacheMain(_ cmd: OpaquePointer) {
+  let app = ApacheExpress.express(cmd)
+
+  app.use(cookieParser())
+
+  app.get(&quot;/cookies.json&quot;) { req, res, next in
+    try res.json(req.cookies)
+  }
+
+  app.get(&quot;/&quot;) { req, res, next in
+    let values : [ String : Any ] = [
+      &quot;cowOfTheDay&quot; : cows.vaca()
+    ]
+    try res.render(&quot;index&quot;, values)
+  }
+}
+</code></pre>
+
 <ul>
-<li><a href="https://groups.google.com/d/forum/mod_swift">Mailing List</a></li>
-<li><a href="http://slack.noze.io">Slack</a></li>
-<li><a href="mailto:info@mod-swift.org">info@mod-swift.org</a></li>
+<li><a href="http://apacheexpress.io/">ApacheExpress Homepage</a></li>
+<li><a href="http://docs.apacheexpress.io/">ApacheExpress Documentation</a></li>
 </ul>
-<h3 id="who">Who</h3>
-<p>mod_swift is brought to you by the
-<a href="http://zeezide.de">ZeeZide</a> GmbH.
-<a href="http://zeezide.com/contact.html">Imprint</a>.</p>
               
             </div>
           </div>
@@ -171,8 +185,10 @@ an email to tell us why this is crap (or not?).</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
+        <a href="../http2/" class="btn btn-neutral float-right" title="HTTP/2">Next <span class="icon icon-circle-arrow-right"></span></a>
       
-        <a href="../links/" class="btn btn-neutral" title="Link Collection"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+        <a href="../tools/" class="btn btn-neutral" title="Tools Reference"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -200,8 +216,10 @@ an email to tell us why this is crap (or not?).</p>
           <a href="https://github.com/modswift/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../links/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../tools/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
+      
+        <span style="margin-left: 15px"><a href="../http2/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

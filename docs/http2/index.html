@@ -8,7 +8,7 @@
   
   <meta name="author" content="ZeeZide GmbH">
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>About - mod_swift</title>
+  <title>HTTP/2 - mod_swift</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "About";
-    var mkdocs_page_input_path = "about.md";
-    var mkdocs_page_url = "/about/";
+    var mkdocs_page_name = "HTTP/2";
+    var mkdocs_page_input_path = "http2.md";
+    var mkdocs_page_url = "/http2/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js"></script>
@@ -87,9 +87,27 @@
     <a class="" href="../apacheexpress/">ApacheExpress</a>
 	    </li>
           
-            <li class="toctree-l1">
+            <li class="toctree-l1 current">
 		
-    <a class="" href="../http2/">HTTP/2</a>
+    <a class="current" href="./">HTTP/2</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#http2">HTTP/2</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#check-whether-http2-is-available">Check whether HTTP/2 is available</a></li>
+        
+            <li><a class="toctree-l3" href="#install-the-homebrew-apache-w-http2">Install the Homebrew Apache w/ HTTP/2</a></li>
+        
+            <li><a class="toctree-l3" href="#useful-tools">Useful tools</a></li>
+        
+            <li><a class="toctree-l3" href="#links">Links</a></li>
+        
+        </ul>
+    
+
+    </ul>
 	    </li>
           
             <li class="toctree-l1">
@@ -102,18 +120,9 @@
     <a class="" href="../links/">Link Collection</a>
 	    </li>
           
-            <li class="toctree-l1 current">
+            <li class="toctree-l1">
 		
-    <a class="current" href="./">About</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l2"><a href="#contact">Contact</a></li>
-    
-
-    <li class="toctree-l2"><a href="#who">Who</a></li>
-    
-
-    </ul>
+    <a class="" href="../about/">About</a>
 	    </li>
           
         </ul>
@@ -138,10 +147,10 @@
     
       
     
-    <li>About</li>
+    <li>HTTP/2</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/modswift/edit/master/docs/about.md"
+        <a href="https://github.com/modswift/edit/master/docs/http2.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -151,19 +160,70 @@
           <div role="main">
             <div class="section">
               
-                <p><center><em>Apache modules in Swift</em>.</center></p>
-<h3 id="contact">Contact</h3>
-<p>Hey, we love feedback. Join the mailing list, Slack channel or just drop us
-an email to tell us why this is crap (or not?).</p>
+                <h1 id="http2">HTTP/2</h1>
+<p>If your server provides the <code>mod_http2</code> module, <code>swift apache</code> will
+automatically pick it up, configure a development SSL certificate and
+the HTTP/2 module.
+By default the </p>
+<h2 id="check-whether-http2-is-available">Check whether HTTP/2 is available</h2>
+<p>To check whether mod_swift did detect the HTTP/2 module successfully, you can
+run:</p>
+<pre><code>$ swift apache validate
+The Swift Apache build environment looks sound.
+
+  srcroot:   /Users/helge/tmp/tests/mods_helloworld
+  module:    mods_helloworld
+  config:    debug
+  product:   /Users/helge/tmp/tests/mods_helloworld/.build/mods_helloworld.so
+  apxs:      /usr/local/bin/apxs
+  mod_swift: /usr/local/opt/mod_swift
+  swift:     3.0.2
+  cert:      self-signed-mod_swift-localhost-server.crt
+  http/2:    yes
+</code></pre>
+
+<p>Look for the last line and check whether it says <code>yes</code>.</p>
+<h2 id="install-the-homebrew-apache-w-http2">Install the Homebrew Apache w/ HTTP/2</h2>
+<p>Before you install mod_swift, we highly recommend that you install or reinstall
+the Homebrew Apache w/ HTTP/2 and the MPM event module:</p>
+<pre><code>brew tap homebrew/apache
+brew reinstall httpd24 --with-mpm-event --with-http2
+</code></pre>
+<p>You can also add <code>--with-privileged-ports</code> if you want to use such.</p>
+<h2 id="useful-tools">Useful tools</h2>
+<h3 id="chrome-developer-tools">Chrome Developer Tools</h3>
+<p>You can use the <code>Network</code> tab in the Chrome Developer Tools to check whether
+requests are done using HTTP/2. Right click the table view and select
+'Protocol'.</p>
+<h3 id="curl-w-http2-support">curl w/ HTTP/2 support</h3>
+<p>On Homebrew you can easily install <code>curl</code> with HTTP/2 support:</p>
+<pre><code>brew reinstall curl --with-nghttp2 --with-openssl
+</code></pre>
+<p><em>IMPORTANT</em>: curl is Cellar only w/ Homebrew. To invoke it either adjust your
+<code>PATH</code> to include <code>/use/local/opt/curl/bin</code> or invoke curl with the full path:</p>
+<pre><code class="shell">/usr/local/opt/curl/bin/curl -v --insecure --http2 https://localhost:8442/hello
+</code></pre>
+
+<p>(--insecure is needed if you use it w/ the self-signed certificate coming w/
+ mod_swift)</p>
+<p>You can scan the output of curl to see whether it is actually using HTTP/2:</p>
+<pre><code>...
+* ALPN, offering h2
+* ALPN, offering http/1.1
+...
+* Using HTTP2, server supports multi-use
+* Connection state changed (HTTP/2 confirmed)
+...
+&gt; GET /hello HTTP/2
+...
+&lt; HTTP/2 200
+...
+</code></pre>
+
+<h2 id="links">Links</h2>
 <ul>
-<li><a href="https://groups.google.com/d/forum/mod_swift">Mailing List</a></li>
-<li><a href="http://slack.noze.io">Slack</a></li>
-<li><a href="mailto:info@mod-swift.org">info@mod-swift.org</a></li>
+<li><a href="https://icing.github.io/mod_h2/howto.html">how to h2 in apache</a></li>
 </ul>
-<h3 id="who">Who</h3>
-<p>mod_swift is brought to you by the
-<a href="http://zeezide.de">ZeeZide</a> GmbH.
-<a href="http://zeezide.com/contact.html">Imprint</a>.</p>
               
             </div>
           </div>
@@ -171,8 +231,10 @@ an email to tell us why this is crap (or not?).</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
+        <a href="../mod_dbd/" class="btn btn-neutral float-right" title="SQL Database Access">Next <span class="icon icon-circle-arrow-right"></span></a>
       
-        <a href="../links/" class="btn btn-neutral" title="Link Collection"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+        <a href="../apacheexpress/" class="btn btn-neutral" title="ApacheExpress"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -200,8 +262,10 @@ an email to tell us why this is crap (or not?).</p>
           <a href="https://github.com/modswift/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../links/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../apacheexpress/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
+      
+        <span style="margin-left: 15px"><a href="../mod_dbd/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

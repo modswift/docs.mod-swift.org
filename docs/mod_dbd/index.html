@@ -8,7 +8,7 @@
   
   <meta name="author" content="ZeeZide GmbH">
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>About - mod_swift</title>
+  <title>SQL Database Access - mod_swift</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -17,9 +17,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "About";
-    var mkdocs_page_input_path = "about.md";
-    var mkdocs_page_url = "/about/";
+    var mkdocs_page_name = "SQL Database Access";
+    var mkdocs_page_input_path = "mod_dbd.md";
+    var mkdocs_page_url = "/mod_dbd/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js"></script>
@@ -92,9 +92,15 @@
     <a class="" href="../http2/">HTTP/2</a>
 	    </li>
           
-            <li class="toctree-l1">
+            <li class="toctree-l1 current">
 		
-    <a class="" href="../mod_dbd/">SQL Database Access</a>
+    <a class="current" href="./">SQL Database Access</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l2"><a href="#database-access-using-mod_dbd">Database Access using mod_dbd</a></li>
+    
+
+    </ul>
 	    </li>
           
             <li class="toctree-l1">
@@ -102,18 +108,9 @@
     <a class="" href="../links/">Link Collection</a>
 	    </li>
           
-            <li class="toctree-l1 current">
+            <li class="toctree-l1">
 		
-    <a class="current" href="./">About</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l2"><a href="#contact">Contact</a></li>
-    
-
-    <li class="toctree-l2"><a href="#who">Who</a></li>
-    
-
-    </ul>
+    <a class="" href="../about/">About</a>
 	    </li>
           
         </ul>
@@ -138,10 +135,10 @@
     
       
     
-    <li>About</li>
+    <li>SQL Database Access</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/modswift/edit/master/docs/about.md"
+        <a href="https://github.com/modswift/edit/master/docs/mod_dbd.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -151,19 +148,60 @@
           <div role="main">
             <div class="section">
               
-                <p><center><em>Apache modules in Swift</em>.</center></p>
-<h3 id="contact">Contact</h3>
-<p>Hey, we love feedback. Join the mailing list, Slack channel or just drop us
-an email to tell us why this is crap (or not?).</p>
-<ul>
-<li><a href="https://groups.google.com/d/forum/mod_swift">Mailing List</a></li>
-<li><a href="http://slack.noze.io">Slack</a></li>
-<li><a href="mailto:info@mod-swift.org">info@mod-swift.org</a></li>
-</ul>
-<h3 id="who">Who</h3>
-<p>mod_swift is brought to you by the
-<a href="http://zeezide.de">ZeeZide</a> GmbH.
-<a href="http://zeezide.com/contact.html">Imprint</a>.</p>
+                <h1 id="database-access-using-mod_dbd">Database Access using mod_dbd</h1>
+<p>A feature of Apache 2 known to few is
+<a href="https://httpd.apache.org/docs/2.4/mod/mod_dbd.html">mod_dbd</a>.
+Using that you can configure a SQL database connection within the 
+<a href="https://github.com/AlwaysRightInstitute/mod_swift/blob/master/apache.conf#L79">Apache.conf</a>
+and use that within all your Apache modules/handlers.</p>
+<p><strong>Note</strong>: Shown below is pretty raw access to mod_dbd as provided by the
+          mod_swift <a href="https://github.com/modswift/Apache">Apache</a> wrapper
+          module.
+          You can use <a href="http://apacheeexpress.io">ApacheExpress</a> to access
+          databases using the <a href="http://zeeql.io/">ZeeQL</a> library,
+          which is way more convenient.</p>
+<p>This will setup a directory as a barebones Swift Apache module (try ApacheExpress for a higher level API!)</p>
+<p>Though you can also write your own, Apache 2 comes with drivers for 
+<a href="https://www.sqlite.org">SQLite3</a>, 
+<a href="http://postgresql.org">PostgreSQL</a>,
+MySQL and Oracle.
+The macOS system Apache and the one than can be tapped in Homebrew
+includes SQLite3.
+On Linux you can easily install the ones you want:</p>
+<pre><code>sudo apt-get install libaprutil1-dbd-sqlite3 libaprutil1-dbd-pgsql
+</code></pre>
+<p>Your Swift Apache module doesn't need to concern itself with the database type
+or connection, it can just ask Apache for a connection and it'll happily
+return one from its pool.
+The code looks like this:</p>
+<pre><code>guard let con = req.dbdAcquire()                 else { return ... }
+guard let res = con.select("SELECT * FROM pets") else { return ... }
+
+while let row = res.next() {
+  req.puts("&lt;li&gt;\(row[0])&lt;/li&gt;")
+}
+</code></pre>
+<p>So how does Apache know how to connect and all that? As everything in Apache,
+the admin can configure that in the apache.conf:</p>
+<pre><code>&lt;IfModule dbd_module&gt;
+  DBDriver  sqlite3
+  DBDParams "/var/data/testdb.sqlite3"
+&lt;/IfModule&gt;
+</code></pre>
+<p>Or to access your favorite OpenGroupware.org database using PostgreSQL:</p>
+<pre><code>&lt;IfModule dbd_module&gt;
+  DBDriver pgsql
+  DBDParams "host=127.0.0.1 port=5432 dbname=OGo user=OGo password=OGo"
+
+  # Connection Pool Management
+  DBDMin      1
+  DBDKeep     2
+  DBDMax     10
+  DBDExptime 60
+&lt;/IfModule&gt;
+</code></pre>
+<p>You get the idea. We provide a simple wrapper for the select query shown as
+part of our <a href="https://github.com/modswift/Apache">Apache</a> module.</p>
               
             </div>
           </div>
@@ -171,8 +209,10 @@ an email to tell us why this is crap (or not?).</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
+        <a href="../links/" class="btn btn-neutral float-right" title="Link Collection">Next <span class="icon icon-circle-arrow-right"></span></a>
       
-        <a href="../links/" class="btn btn-neutral" title="Link Collection"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+        <a href="../http2/" class="btn btn-neutral" title="HTTP/2"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -200,8 +240,10 @@ an email to tell us why this is crap (or not?).</p>
           <a href="https://github.com/modswift/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../links/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../http2/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
+      
+        <span style="margin-left: 15px"><a href="../links/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
