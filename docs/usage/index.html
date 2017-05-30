@@ -72,6 +72,19 @@
     <a class="current" href="./">Using mod_swift</a>
     <ul class="subnav">
             
+    <li class="toctree-l2"><a href="#hello-world">Hello World</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l3" href="#setup-module">Setup Module</a></li>
+        
+            <li><a class="toctree-l3" href="#build-module">Build Module</a></li>
+        
+            <li><a class="toctree-l3" href="#run-module">Run Module</a></li>
+        
+        </ul>
+    
+
     </ul>
 	    </li>
           
@@ -145,7 +158,191 @@
           <div role="main">
             <div class="section">
               
-                
+                <h1 id="hello-world">Hello World</h1>
+<p>Note: mod_swift only provides a very low level raw API. If you want something
+more convenient, checkout <a href="http://apacheexpress.io/">ApacheExpress</a>.</p>
+<p>But lets do a simple <code>mods_helloworld</code> module for demonstration purposes.</p>
+<h2 id="setup-module">Setup Module</h2>
+<p>Setup a new directory and initialize it as an Apache Swift module:</p>
+<pre><code>$ mkdir mods_helloworld &amp;&amp; cd mods_helloworld
+$ swift apache init
+The Swift Apache build environment looks sound.
+
+  module:    mods_helloworld
+  config:    debug
+  product:   /Users/helge/tmp/tests/mods_helloworld/.build/mods_helloworld.so
+  apxs:      /usr/local/bin/apxs
+  mod_swift: /usr/local/opt/mod_swift
+</code></pre>
+
+<p>This creates a Swift Package Manager module and places an example Apache entry
+point into it:</p>
+<pre><code>$ tree
+.
+├── Package.swift
+└── Sources
+    └── mods_helloworld.swift
+
+1 directory, 2 files
+</code></pre>
+
+<p>The <code>Package.swift</code> just loads the Apache wrapper module we provide:</p>
+<pre><code class="swift">import PackageDescription
+
+let package = Package(
+    name: &quot;mods_helloworld&quot;,
+
+    dependencies: [
+      .Package(url: &quot;https://github.com/modswift/Apache.git&quot;, 
+               majorVersion: 0)
+    ]
+)
+</code></pre>
+
+<p>The <code>mods_helloworld.swift</code> source file contains a demo Apache module. The
+file can be named anything (but main.swift, which would produce a tool instead
+of a library ;-)</p>
+<pre><code class="swift">import CApache
+import Apache
+
+var module = CApache.module(name: &quot;mods_helloworld&quot;)
+
+func mods_helloworldHandler(p: UnsafeMutablePointer&lt;request_rec&gt;?) -&gt; Int32 {
+  // example content handler, modify to your liking
+  var req = ApacheRequest(raw: p!)
+
+  req.contentType = &quot;text/html; charset=ascii&quot;
+  req.puts(&quot;&lt;html&gt;&lt;head&gt;&lt;title&gt;Hello mod_swift&lt;/title&gt;\(semanticUI)&lt;/head&gt;&quot;)
+  req.puts(&quot;&lt;body&gt;&lt;div class='ui main container' style='margin-top: 1em;'&gt;&quot;)
+  req.puts(&quot;&lt;h3&gt;Welcome to mods_helloworld&lt;/h3&gt;&quot;)
+  defer { req.puts(&quot;&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;&quot;) }
+
+  req.puts(&quot;&lt;h4&gt;Links of Interest&lt;/h4&gt;&quot;)
+  req.puts(&quot;&lt;ul&gt;&quot;)
+  req.puts(&quot;  &lt;li&gt;&lt;a href='http://mod-swift.org/'&gt;mod-swift.org&lt;/a&gt;&lt;/li&gt;&quot;)
+  req.puts(&quot;  &lt;li&gt;&lt;a href='http://apacheexpress.io/'&gt;ApacheExpress&lt;/a&gt;&lt;/li&gt;&quot;)
+  req.puts(&quot;  &lt;li&gt;&lt;a href='https://httpd.apache.org/'&gt;Apache&lt;/a&gt;&lt;/li&gt;&quot;)
+
+  req.puts(&quot;&lt;/ul&gt;&quot;)
+  return OK
+}
+
+fileprivate func register_hooks(pool: OpaquePointer?) {
+  // hookup the handlers you want
+  ap_hook_handler(mods_helloworldHandler, nil, nil, APR_HOOK_MIDDLE)
+}
+
+@_cdecl(&quot;ApacheMain&quot;)
+public func ApacheMain(cmd: UnsafeMutablePointer&lt;cmd_parms&gt;) {
+  module.register_hooks = register_hooks
+
+  let rc = apz_register_swift_module(cmd, &amp;module)
+  assert(rc == APR_SUCCESS, &quot;Could not add Swift module!&quot;)
+}
+</code></pre>
+
+<h3 id="explanation-of-the-source">Explanation of the Source</h3>
+<h4 id="module-structure">Module Structure</h4>
+<p>At the top this prepares the Apache module structure. The structure identifies
+our module within Apache. It contains the name, links to our callbacks, and
+optionally configuration data (yes, you can also add your own configuration
+directives to the Apache config).</p>
+<pre><code class="swift">var module = CApache.module(name: &quot;mods_helloworld&quot;)
+</code></pre>
+
+<p>Which is registered at the bottom, in the <code>ApacheMain</code> function:</p>
+<h4 id="apachemain">ApacheMain()</h4>
+<p><code>ApacheMain</code> is the primary entry point which is called by mod_swift when it
+executes the <code>LoadSwiftModule</code> directive in the Apache configuration.
+The <code>@_cdecl</code> isn't actually required in this case, but can be necessary in more
+complex setups. It tells Apache where to find the entry
+function (Apache being written in C, needs to have a C name, which often, but
+not always can be derived - the cdecl makes it explicit).</p>
+<pre><code class="swift">@_cdecl(&quot;ApacheMain&quot;)
+public func ApacheMain(cmd: UnsafeMutablePointer&lt;cmd_parms&gt;) {
+  module.register_hooks = register_hooks
+
+  let rc = apz_register_swift_module(cmd, &amp;module)
+}
+</code></pre>
+
+<p>Within the ApacheMain function, we attach the <code>register_hooks</code> callback to
+the module. And after that, register our Swift module as a regular Apache
+module.
+When Apache starts up, it runs its configuration process (actually twice,
+checkout the module devguide for more info).
+A part of that is registering the module hooks, in our example:</p>
+<h4 id="register_hooks">register_hooks</h4>
+<pre><code class="swift">fileprivate func register_hooks(pool: OpaquePointer?) {
+  // hookup the handlers you want
+  ap_hook_handler(mods_helloworldHandler, nil, nil, APR_HOOK_MIDDLE)
+}
+</code></pre>
+
+<p>There are hooks which allow you to add callbacks to pretty much any part of
+Apache (configuration, process handling, path translation, authorization, etc.).
+In our simple case we just register a so called 'handler'.
+Handlers are pretty similar to what one may know as Middleware from other
+frameworks. And just like Middleware, they can decline to handle a request
+(return DECLINED), or process it (return OK or an error code).
+Lets look at our handler:</p>
+<h4 id="mods_helloworldhandler">mods_helloworldHandler</h4>
+<p>Again, you can use any name. This is just a generated one. Also, you can have as
+many handlers as you want!</p>
+<pre><code class="swift">func mods_helloworldHandler(p: UnsafeMutablePointer&lt;request_rec&gt;?) -&gt; Int32 {
+  var req = ApacheRequest(raw: p!)
+  req.contentType = &quot;text/html; charset=ascii&quot;
+...
+  req.puts(&quot;&lt;h3&gt;Welcome to mods_helloworld&lt;/h3&gt;&quot;)
+...  
+  return OK
+}
+</code></pre>
+
+<p>The argument this function receives is the raw Apache C structure representing
+the current HTTP request. First thing we do is wrap it in a <code>ApacheRequest</code>
+Swift object, to make the API nicer (you can still call all Apache C API on the
+raw pointer!).</p>
+<p>Next we assign a content-type to the response (Apache uses a single object
+to represent both, Request and Response) and write out some content using
+<code>req.puts</code>.</p>
+<p>Then we return <code>OK</code> to tell Apache that our handler processed the request and
+no other content handler needs to run.</p>
+<h2 id="build-module">Build Module</h2>
+<p>Now that we looked at the source, lets build the module:
+<code>swift apache build</code> first invokes <code>swift build</code> and subsequently converts the
+build results into an Apache module shared library (<code>mods_helloworld.so</code>).</p>
+<pre><code>$ swift apache build
+Cloning https://github.com/modswift/Apache.git
+HEAD is now at 37f3038 Travis: use `swift build`
+Resolved version: 0.2.0
+Cloning https://github.com/modswift/CApache.git
+HEAD is now at aa7d5b5 Tabs to spaces
+Resolved version: 1.0.0
+Compile Swift Module 'Apache' (8 sources)
+Compile Swift Module 'mods_helloworld' (1 sources)
+
+$ ls -hl .build/mods_helloworld.so
+-rwxr-xr-x  1 helge  staff   240K May 30 16:05 .build/mods_helloworld.so
+</code></pre>
+
+<h2 id="run-module">Run Module</h2>
+<p>The <code>swift apache serve</code> command will generate an Apache configuration and
+start Apache with it.
+You can then access your module in the browser using either</p>
+<ul>
+<li>HTTP: <a href="http://localhost:8042/">http://localhost:8042/</a></li>
+<li>HTTPS / HTTP/2: <a href="https://localhost:8442/">https://localhost:8442/</a></li>
+</ul>
+<pre><code>$ swift apache serve
+Note: DocRoot /usr/local/var/www/htdocs
+Starting Apache on port 8042/8442:
+GET /helloworld/ 200 715 - 0ms
+</code></pre>
+
+<p>Note of interest: <code>0ms</code>, the duration of the request. Yes, it is <em>that</em> fast ;-)</p>
+<p>In case you wonder, the generated Apache configuration can be found in 
+<code>.build/debug/apache.conf</code>.</p>
               
             </div>
           </div>
