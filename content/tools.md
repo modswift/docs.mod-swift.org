@@ -71,7 +71,7 @@ start Apache with it.
 You can then access your module in the browser using either
 
   - HTTP: [http://localhost:8042/](http://localhost:8042/)
-  - HTTPS/HTTP2: [https://localhost:8442/](https://localhost:8442/)
+  - HTTPS / HTTP2/: [https://localhost:8442/](https://localhost:8442/)
 
 ```
 $ swift apache serve
