@@ -10,6 +10,13 @@ site_dir:    docs
 theme:       readthedocs
 
 pages:
-  - 'Introduction': 'index.md'
-  - 'About':        'about.md'
-  
+  - 'Introduction':            'index.md'
+  - 'Installation':            'install.md'
+  - 'Using mod_swift':         'usage.md'
+  - 'Configuration Templates': 'configtemplates.md'
+  - 'Tools Reference':         'tools.md'
+  - 'ApacheExpress':           'apacheexpress.md'
+  - 'HTTP/2':                  'http2.md'
+  - 'SQL Database Access':     'mod_dbd.md'
+  - 'Link Collection':         'links.md'
+  - 'About':                   'about.md'
