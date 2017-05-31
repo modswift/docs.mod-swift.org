@@ -8,6 +8,7 @@ docs_dir:    content
 site_dir:    docs
 
 theme:       readthedocs
+extra_css:   [ extra.css ]
 
 pages:
   - 'Introduction':            'index.md'
