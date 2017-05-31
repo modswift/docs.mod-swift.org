@@ -1,11 +1,14 @@
 # ApacheExpress
 
+<a href="http://apacheexpress.io/"><img src="http://zeezide.com/img/ApexIcon1024.svg"
+       align="right" width="92" height="92" /></a>
 [ApacheExpress](http://apacheexpress.io/) is a framework layering on top of 
 mod_swift.
 It makes it very easy to quickly build reliable and feature rich Swift server
 applications from within Xcode or using the Swift Package Manager.
 It supports convenient database access using Apache mod_dbd.
-And well, can be used together with all the other regular Apache modules.
+And well, can be used together with all the other regular Apache modules
+you know and love.
 
 Example:
 
