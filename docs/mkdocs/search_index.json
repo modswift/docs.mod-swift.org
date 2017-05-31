@@ -262,13 +262,18 @@
         }, 
         {
             "location": "/about/", 
-            "text": "Apache modules in Swift\n.\n\n\nContact\n\n\nHey, we love feedback. Join the mailing list, Slack channel or just drop us\nan email to tell us why this is crap (or not?).\n\n\n\n\nMailing List\n\n\nSlack\n\n\ninfo@mod-swift.org\n\n\n\n\nWho\n\n\nmod_swift is brought to you by the\n\nZeeZide\n GmbH.\n\nImprint\n.", 
+            "text": "Apache modules in Swift\n.\n\n\nContact\n\n\nHey, we love feedback. Join the mailing list, Slack channel or just drop us\nan email to tell us why this is crap (or not?).\n\n\n\n\nMailing List\n\n\nSlack\n\n\ninfo@mod-swift.org\n\n\n\n\nMkdocs\n\n\nBuilt with \nMkDocs\n \nusing a \ntheme\n \nprovided by \nRead the Docs\n.\n\n\nWho\n\n\nmod_swift is brought to you by the\n\nZeeZide\n GmbH.\n\nImprint\n.", 
             "title": "About"
         }, 
         {
             "location": "/about/#contact", 
             "text": "Hey, we love feedback. Join the mailing list, Slack channel or just drop us\nan email to tell us why this is crap (or not?).   Mailing List  Slack  info@mod-swift.org", 
             "title": "Contact"
+        }, 
+        {
+            "location": "/about/#mkdocs", 
+            "text": "Built with  MkDocs  \nusing a  theme  \nprovided by  Read the Docs .", 
+            "title": "Mkdocs"
         }, 
         {
             "location": "/about/#who", 
