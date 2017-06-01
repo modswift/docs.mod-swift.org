@@ -48,6 +48,7 @@ Install:
     curl -L -o mod_swift.tgz \
          https://github.com/modswift/mod_swift/archive/0.8.3.tar.gz
     tar zxf mod_swift.tgz && cd mod_swift-0.8.3
+    make
     sudo make install
 
 That puts mod_swift into `/usr/local`. If you want to have it in `/usr`, do:
