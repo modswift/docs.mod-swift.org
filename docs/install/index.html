@@ -185,7 +185,8 @@ brew install mod_swift
 <h2 id="install-on-linux-or-macos-wo-homebrew">Install on Linux (or macOS w/o Homebrew)</h2>
 <p>On macOS: We strongly advise that you rather use Homebrew, more importantly
           the Apache provided by Homebrew.</p>
-<p>Ubuntu packages required (assuming you have Swift 3 installed already):</p>
+<p>Ubuntu packages required (assuming you have Swift 3 installed already), this includes
+the PostgreSQL and SQLite3 database adaptors, add additional ones as desired:</p>
 <pre><code>sudo apt-get update
 sudo apt-get install \
    curl pkg-config libapr1-dev libaprutil1-dev \
@@ -194,7 +195,7 @@ sudo apt-get install \
    libaprutil1-dbd-sqlite3 \
    libaprutil1-dbd-pgsql
 </code></pre>
-<p>Install:</p>
+<p>Install mod_swift:</p>
 <pre><code>curl -L -o mod_swift.tgz \
      https://github.com/modswift/mod_swift/archive/0.8.5.tar.gz
 tar zxf mod_swift.tgz &amp;&amp; cd mod_swift-0.8.5
