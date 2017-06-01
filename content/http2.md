@@ -3,7 +3,6 @@
 If your server provides the `mod_http2` module, `swift apache` will
 automatically pick it up, configure a development SSL certificate and
 the HTTP/2 module.
-By default the 
 
 ## Check whether HTTP/2 is available
 
