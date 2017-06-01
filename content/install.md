@@ -37,7 +37,7 @@ On macOS: We strongly advise that you rather use Homebrew, more importantly
 Ubuntu packages required (assuming you have Swift 3 installed already):
 
     sudo apt-get install \
-       pkg-config libapr1-dev libaprutil1-dev \
+       curl pkg-config libapr1-dev libaprutil1-dev \
        libxml2 apache2 apache2-dev \
        libnghttp2-dev \
        libaprutil1-dbd-sqlite3 \
@@ -45,6 +45,9 @@ Ubuntu packages required (assuming you have Swift 3 installed already):
 
 Install:
 
+    curl -L -o mod_swift.tgz \
+         https://github.com/modswift/mod_swift/archive/0.8.3.tar.gz
+    tar zxf mod_swift.tgz && cd mod_swift-0.8.3
     sudo make install
 
 That puts mod_swift into `/usr/local`. If you want to have it in `/usr`, do:
