@@ -187,14 +187,17 @@ brew install mod_swift
           the Apache provided by Homebrew.</p>
 <p>Ubuntu packages required (assuming you have Swift 3 installed already):</p>
 <pre><code>sudo apt-get install \
-   pkg-config libapr1-dev libaprutil1-dev \
+   curl pkg-config libapr1-dev libaprutil1-dev \
    libxml2 apache2 apache2-dev \
    libnghttp2-dev \
    libaprutil1-dbd-sqlite3 \
    libaprutil1-dbd-pgsql
 </code></pre>
 <p>Install:</p>
-<pre><code>sudo make install
+<pre><code>curl -L -o mod_swift.tgz \
+     https://github.com/modswift/mod_swift/archive/0.8.3.tar.gz
+tar zxf mod_swift.tgz &amp;&amp; cd mod_swift-0.8.3
+sudo make install
 </code></pre>
 <p>That puts mod_swift into <code>/usr/local</code>. If you want to have it in <code>/usr</code>, do:</p>
 <pre><code>sudo make prefix=/usr install
