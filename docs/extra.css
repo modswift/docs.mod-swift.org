@@ -10,3 +10,10 @@
 .wy-breadcrumbs a {
   color: #AF0A32;
 }
+.wy-breadcrumbs-aside {
+  display: block !important;
+}
+.wy-breadcrumbs-aside img {
+  width:  72px;
+  height: 72px;
+}
