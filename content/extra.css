@@ -4,6 +4,9 @@
 .section pre code {
   font-size: 18px;
 }
-.wy-side-nav-search {
+.wy-side-nav-search, .wy-nav-top {
   background-color: #AF0A32;
+}
+.wy-breadcrumbs a {
+  color: #AF0A32;
 }
