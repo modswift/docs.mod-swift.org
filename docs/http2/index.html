@@ -186,8 +186,7 @@ The Swift Apache build environment looks sound.
 <h2 id="install-the-homebrew-apache-w-http2">Install the Homebrew Apache w/ HTTP/2</h2>
 <p>Before you install mod_swift, we highly recommend that you install or reinstall
 the Homebrew Apache w/ HTTP/2 and the MPM event module:</p>
-<pre><code>brew tap homebrew/apache
-brew reinstall httpd24 --with-mpm-event --with-http2
+<pre><code>brew reinstall httpd --with-mpm-event --with-http2
 </code></pre>
 <p>You can also add <code>--with-privileged-ports</code> if you want to use such.</p>
 <h2 id="useful-tools">Useful tools</h2>
@@ -243,7 +242,7 @@ requests are done using HTTP/2. Right click the table view and select
       </div>
 
     </section>
-    
+
   </div>
 
   <div class="rst-versions" role="note" style="cursor: pointer">
@@ -259,7 +258,10 @@ requests are done using HTTP/2. Right click the table view and select
       
     </span>
 </div>
+    <script>var base_url = '..';</script>
     <script src="../js/theme.js"></script>
+      <script src="../search/require.js"></script>
+      <script src="../search/search.js"></script>
 
 </body>
 </html>
