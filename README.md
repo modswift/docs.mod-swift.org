@@ -5,7 +5,7 @@
 
 This is the source repository for the mod_swift documentation.
 Checkout the built results over here:
-[http://docs.mod_swift.org/](http://docs.mod_swift.org).
+[http://docs.mod-swift.org/](http://docs.mod-swift.org).
 
 #### mkdocs setup
 
