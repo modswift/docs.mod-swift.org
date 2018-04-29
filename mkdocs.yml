@@ -1,9 +1,8 @@
 site_name:        mod_swift
 site_url:         http://mod-swift.org/
 site_author:      ZeeZide GmbH
-copyright:        © ZeeZide GmbH 2017
+copyright:        © ZeeZide GmbH 2018
 repo_url:         https://github.com/modswift/
-google_analytics: [ 'UA-3266252-11', 'mod-swift.org' ]
   
 docs_dir:    content
 site_dir:    docs
