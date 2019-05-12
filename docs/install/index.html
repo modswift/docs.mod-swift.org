@@ -13,7 +13,7 @@
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="../css/highlight.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
   <link href="../extra.css" rel="stylesheet">
   
   <script>
@@ -23,9 +23,10 @@
     var mkdocs_page_url = "/install/";
   </script>
   
-  <script src="../js/jquery-2.1.1.min.js"></script>
-  <script src="../js/modernizr-2.8.3.min.js"></script>
-  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
   
 </head>
 
@@ -39,7 +40,7 @@
         <a href=".." class="icon icon-home"> mod_swift</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -139,11 +140,11 @@
       
     
     <li>Installation</li>
-    
     <li class="wy-breadcrumbs-aside">
-      <a href="http://mod-swift.org/">
-        <img src="http://zeezide.com/img/mod_swift.svg" />
-      </a>
+      
+        <a href="https://github.com/modswift/edit/master/docs/install.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
     </li>
   </ul>
   <hr/>
@@ -186,8 +187,8 @@ sudo apt-get install \
 </code></pre>
 <p>Install mod_swift:</p>
 <pre><code>curl -L -o mod_swift.tgz \
-     https://github.com/modswift/mod_swift/archive/0.8.5.tar.gz
-tar zxf mod_swift.tgz &amp;&amp; cd mod_swift-0.8.5
+     https://github.com/modswift/mod_swift/archive/0.9.0.tar.gz
+tar zxf mod_swift.tgz &amp;&amp; cd mod_swift-0.9.0
 make
 sudo make install
 </code></pre>
@@ -205,7 +206,7 @@ config:    debug
 product:   /Users/helge/dev/Swift/Apex3/.build/mods_Apex3.so
 apxs:      /usr/local/bin/apxs
 mod_swift: /usr/local
-swift:     3.1.0
+swift:     5.0.1
 cert:      self-signed-mod_swift-localhost-server.crt
 http/2:    yes
 </code></pre>
@@ -221,6 +222,7 @@ or our
               
             </div>
           </div>
+          <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
@@ -232,7 +234,18 @@ or our
     </div>
   
 
+  <hr/>
 
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>© ZeeZide GmbH 2018</p>
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
         </div>
       </div>
 
@@ -254,9 +267,8 @@ or our
     </span>
 </div>
     <script>var base_url = '..';</script>
-    <script src="../js/theme.js"></script>
-      <script src="../search/require.js"></script>
-      <script src="../search/search.js"></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
 
 </body>
 </html>

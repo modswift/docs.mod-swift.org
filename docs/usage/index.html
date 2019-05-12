@@ -13,7 +13,7 @@
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="../css/highlight.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
   <link href="../extra.css" rel="stylesheet">
   
   <script>
@@ -23,9 +23,10 @@
     var mkdocs_page_url = "/usage/";
   </script>
   
-  <script src="../js/jquery-2.1.1.min.js"></script>
-  <script src="../js/modernizr-2.8.3.min.js"></script>
-  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
   
 </head>
 
@@ -39,7 +40,7 @@
         <a href=".." class="icon icon-home"> mod_swift</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
@@ -137,11 +138,11 @@
       
     
     <li>Using mod_swift</li>
-    
     <li class="wy-breadcrumbs-aside">
-      <a href="http://mod-swift.org/">
-        <img src="http://zeezide.com/img/mod_swift.svg" />
-      </a>
+      
+        <a href="https://github.com/modswift/edit/master/docs/usage.md"
+          class="icon icon-github"> Edit on GitHub</a>
+      
     </li>
   </ul>
   <hr/>
@@ -172,9 +173,10 @@ point into it:</p>
 .
 ├── Package.swift
 └── Sources
-    └── mods_helloworld.swift
+    └── mods_helloworld
+        └── mods_helloworld.swift
 
-1 directory, 2 files
+2 directory, 2 files
 </code></pre>
 
 <p>The <code>Package.swift</code> just loads the Apache wrapper module we provide:</p>
@@ -184,9 +186,12 @@ let package = Package(
     name: &quot;mods_helloworld&quot;,
 
     dependencies: [
-      .Package(url: &quot;https://github.com/modswift/Apache.git&quot;, 
-               majorVersion: 0)
-    ]
+      .package(url: &quot;https://github.com/modswift/Apache.git&quot;, from: &quot;0.5.0&quot;)
+    ],
+
+    targets: [
+      .target(name: &quot;mods_helloworld&quot;, dependencies: [ &quot;Apache&quot; ])
+    ]    
 )
 </code></pre>
 
@@ -304,17 +309,17 @@ no other content handler needs to run.</p>
 <code>swift apache build</code> first invokes <code>swift build</code> and subsequently converts the
 build results into an Apache module shared library (<code>mods_helloworld.so</code>).</p>
 <pre><code>$ swift apache build
-Cloning https://github.com/modswift/Apache.git
-HEAD is now at 37f3038 Travis: use `swift build`
-Resolved version: 0.2.0
+Fetching https://github.com/modswift/Apache.git
+Fetching https://github.com/modswift/CApache.git
+Completed resolution in 3.65s
 Cloning https://github.com/modswift/CApache.git
-HEAD is now at aa7d5b5 Tabs to spaces
-Resolved version: 1.0.0
-Compile Swift Module 'Apache' (8 sources)
-Compile Swift Module 'mods_helloworld' (1 sources)
+Resolving https://github.com/modswift/CApache.git at 2.0.1
+Cloning https://github.com/modswift/Apache.git
+Resolving https://github.com/modswift/Apache.git at 0.5.0
+[2/2] Compiling Swift Module 'mods_helloworld' (1 sources)
 
 $ ls -hl .build/mods_helloworld.so
--rwxr-xr-x  1 helge  staff   240K May 30 16:05 .build/mods_helloworld.so
+-rwxr-xr-x  1 helge  staff   173K 12 Mai 15:29 .build/mods_helloworld.so
 </code></pre>
 
 <h2 id="run-module">Run Module</h2>
@@ -322,8 +327,8 @@ $ ls -hl .build/mods_helloworld.so
 start Apache with it.
 You can then access your module in the browser using either</p>
 <ul>
-<li>HTTP: <a href="http://localhost:8042/">http://localhost:8042/</a></li>
-<li>HTTPS / HTTP/2: <a href="https://localhost:8442/">https://localhost:8442/</a></li>
+<li>HTTP: <a href="http://localhost:8042/helloworld">http://localhost:8042/helloworld</a></li>
+<li>HTTPS / HTTP/2: <a href="https://localhost:8442/helloworld">https://localhost:8442/helloworld</a></li>
 </ul>
 <pre><code>$ swift apache serve
 Note: DocRoot /usr/local/var/www/htdocs
@@ -337,6 +342,7 @@ GET /helloworld/ 200 715 - 0ms
               
             </div>
           </div>
+          <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
@@ -348,7 +354,18 @@ GET /helloworld/ 200 715 - 0ms
     </div>
   
 
+  <hr/>
 
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>© ZeeZide GmbH 2018</p>
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
         </div>
       </div>
 
@@ -370,9 +387,8 @@ GET /helloworld/ 200 715 - 0ms
     </span>
 </div>
     <script>var base_url = '..';</script>
-    <script src="../js/theme.js"></script>
-      <script src="../search/require.js"></script>
-      <script src="../search/search.js"></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
 
 </body>
 </html>
