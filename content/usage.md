@@ -29,9 +29,10 @@ $ tree
 .
 ├── Package.swift
 └── Sources
-    └── mods_helloworld.swift
+    └── mods_helloworld
+        └── mods_helloworld.swift
 
-1 directory, 2 files
+2 directory, 2 files
 ```
 
 The `Package.swift` just loads the Apache wrapper module we provide:
@@ -43,9 +44,12 @@ let package = Package(
     name: "mods_helloworld",
 
     dependencies: [
-      .Package(url: "https://github.com/modswift/Apache.git", 
-               majorVersion: 0)
-    ]
+      .package(url: "https://github.com/modswift/Apache.git", from: "0.5.0")
+    ],
+    
+    targets: [
+      .target(name: "mods_helloworld", dependencies: [ "Apache" ])
+    ]    
 )
 ```
 
@@ -188,17 +192,17 @@ build results into an Apache module shared library (`mods_helloworld.so`).
 
 ```
 $ swift apache build
-Cloning https://github.com/modswift/Apache.git
-HEAD is now at 37f3038 Travis: use `swift build`
-Resolved version: 0.2.0
+Fetching https://github.com/modswift/Apache.git
+Fetching https://github.com/modswift/CApache.git
+Completed resolution in 3.65s
 Cloning https://github.com/modswift/CApache.git
-HEAD is now at aa7d5b5 Tabs to spaces
-Resolved version: 1.0.0
-Compile Swift Module 'Apache' (8 sources)
-Compile Swift Module 'mods_helloworld' (1 sources)
+Resolving https://github.com/modswift/CApache.git at 2.0.1
+Cloning https://github.com/modswift/Apache.git
+Resolving https://github.com/modswift/Apache.git at 0.5.0
+[2/2] Compiling Swift Module 'mods_helloworld' (1 sources)
 
 $ ls -hl .build/mods_helloworld.so
--rwxr-xr-x  1 helge  staff   240K May 30 16:05 .build/mods_helloworld.so
+-rwxr-xr-x  1 helge  staff   173K 12 Mai 15:29 .build/mods_helloworld.so
 ```
 
 ## Run Module
@@ -207,8 +211,8 @@ The `swift apache serve` command will generate an Apache configuration and
 start Apache with it.
 You can then access your module in the browser using either
 
-  - HTTP: [http://localhost:8042/](http://localhost:8042/)
-  - HTTPS / HTTP/2: [https://localhost:8442/](https://localhost:8442/)
+  - HTTP: [http://localhost:8042/helloworld](http://localhost:8042/helloworld)
+  - HTTPS / HTTP/2: [https://localhost:8442/helloworld](https://localhost:8442/helloworld)
 
 ```
 $ swift apache serve

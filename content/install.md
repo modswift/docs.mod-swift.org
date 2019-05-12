@@ -47,8 +47,8 @@ the PostgreSQL and SQLite3 database adaptors, add additional ones as desired:
 Install mod_swift:
 
     curl -L -o mod_swift.tgz \
-         https://github.com/modswift/mod_swift/archive/0.8.5.tar.gz
-    tar zxf mod_swift.tgz && cd mod_swift-0.8.5
+         https://github.com/modswift/mod_swift/archive/0.9.0.tar.gz
+    tar zxf mod_swift.tgz && cd mod_swift-0.9.0
     make
     sudo make install
 
@@ -69,7 +69,7 @@ You can call `swift apache validate` to make sure the installation is OK:
     product:   /Users/helge/dev/Swift/Apex3/.build/mods_Apex3.so
     apxs:      /usr/local/bin/apxs
     mod_swift: /usr/local
-    swift:     3.1.0
+    swift:     5.0.1
     cert:      self-signed-mod_swift-localhost-server.crt
     http/2:    yes
 
