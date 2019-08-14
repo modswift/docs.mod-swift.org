@@ -1,5 +1,9 @@
 # Database Access using mod_dbd
 
+2019-08-14: Homebrew has removed support for apr-util DBD drivers:
+[PR #31799](https://github.com/Homebrew/homebrew-core/pull/31799/commits/584a9faa5c2decf32f25bb9d5f028395bb93ab5f).
+Looks like one has to install Apache by hand for this feature.
+
 A feature of Apache 2 known to few is
 [mod_dbd](https://httpd.apache.org/docs/2.4/mod/mod_dbd.html).
 Using that you can configure a SQL database connection within the 
