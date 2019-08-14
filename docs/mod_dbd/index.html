@@ -141,9 +141,6 @@
             <div class="section">
               
                 <h1 id="database-access-using-mod_dbd">Database Access using mod_dbd</h1>
-<p>2019-08-14: Homebrew has removed support for apr-util DBD drivers:
-<a href="https://github.com/Homebrew/homebrew-core/pull/31799/commits/584a9faa5c2decf32f25bb9d5f028395bb93ab5f">PR #31799</a>.
-Looks like one has to install Apache by hand for this feature.</p>
 <p>A feature of Apache 2 known to few is
 <a href="https://httpd.apache.org/docs/2.4/mod/mod_dbd.html">mod_dbd</a>.
 Using that you can configure a SQL database connection within the 
@@ -197,6 +194,15 @@ the admin can configure that in the apache.conf:</p>
 </code></pre>
 <p>You get the idea. We provide a simple wrapper for the select query shown as
 part of our <a href="https://github.com/modswift/Apache">Apache</a> module.</p>
+<p>2019-08-14: Homebrew has removed support for apr-util DBD drivers except
+SQLite:
+<a href="https://github.com/Homebrew/homebrew-core/pull/31799/commits/584a9faa5c2decf32f25bb9d5f028395bb93ab5f">PR #31799</a>.
+To fix that, you can manually install <code>apr-util</code> with the <code>--with-pgsql</code>
+option (or any other driver you want to build).
+Then just hack-link the driver you want into the Homebrew install, e.g.:</p>
+<pre><code>pushd /usr/local//opt/apr-util/libexec/lib/apr-util-1/
+ln -s /usr/local/apr/lib/apr-util-1/apr_dbd_pgsql*.so .
+</code></pre>
               
             </div>
           </div>
