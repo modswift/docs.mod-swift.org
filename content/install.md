@@ -14,6 +14,10 @@ pretty much anywhere.
 
 Got no Homebrew? [Get it!](https://brew.sh)
 
+> UPDATE 2020-12-27: The Homebrew Apache doesn't seem to support the
+> `--with-http2` and `--with-mpm-event` options anymore.
+> Same for `--with-sqlite` and `--with-postgresql`.
+
 Before you install mod_swift, we highly recommend that you install or reinstall
 the Homebrew Apache w/ HTTP/2 and the MPM event module:
 

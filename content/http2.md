@@ -4,6 +4,10 @@ If your server provides the `mod_http2` module, `swift apache` will
 automatically pick it up, configure a development SSL certificate and
 the HTTP/2 module.
 
+UPDATE 2020-12-27: The Homebrew Apache doesn't seem to support the
+`--with-http2` option anymore. HTTP/2 may now require a regular
+Apache installation from source.
+
 ## Check whether HTTP/2 is available
 
 To check whether mod_swift did detect the HTTP/2 module successfully, you can
@@ -27,6 +31,9 @@ The Swift Apache build environment looks sound.
 Look for the last line and check whether it says `yes`.
 
 ## Install the Homebrew Apache w/ HTTP/2
+
+> UPDATE 2020-12-27: The Homebrew Apache doesn't seem to support the
+> `--with-http2` option anymore (nor the mpm-event one).
 
 Before you install mod_swift, we highly recommend that you install or reinstall
 the Homebrew Apache w/ HTTP/2 and the MPM event module:
