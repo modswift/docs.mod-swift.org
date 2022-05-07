@@ -12,6 +12,9 @@ pretty much anywhere.
 
 ## Install on macOS using Homebrew
 
+2022-05-07: macOS instructions are outdated. The Apache2 Homebrew setup
+            changed.
+
 Got no Homebrew? [Get it!](https://brew.sh)
 
 > UPDATE 2020-12-27: The Homebrew Apache doesn't seem to support the
