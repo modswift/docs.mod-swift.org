@@ -4,10 +4,6 @@ If your server provides the `mod_http2` module, `swift apache` will
 automatically pick it up, configure a development SSL certificate and
 the HTTP/2 module.
 
-UPDATE 2020-12-27: The Homebrew Apache doesn't seem to support the
-`--with-http2` option anymore. HTTP/2 may now require a regular
-Apache installation from source.
-
 ## Check whether HTTP/2 is available
 
 To check whether mod_swift did detect the HTTP/2 module successfully, you can
@@ -15,32 +11,22 @@ run:
 
 ```
 $ swift apache validate
-The Swift Apache build environment looks sound.
+swift-driver version: 1.45.2 The Swift Apache build environment looks sound.
 
-  srcroot:   /Users/helge/tmp/tests/mods_helloworld
+  srcroot:   /Users/helge/tmp/mods_helloworld
   module:    mods_helloworld
   config:    debug
-  product:   /Users/helge/tmp/tests/mods_helloworld/.build/mods_helloworld.so
-  apxs:      /usr/local/bin/apxs
-  mod_swift: /usr/local/opt/mod_swift
-  swift:     3.0.2
+  product:   /Users/helge/tmp/mods_helloworld/.build/mods_helloworld.so
+  apxs:      /opt/homebrew/bin/apxs
+  moddir:    /opt/homebrew/lib/httpd/modules
+  relmoddir: /
+  mod_swift: /opt/homebrew/opt/mod_swift
+  swift:     5.6.0
   cert:      self-signed-mod_swift-localhost-server.crt
   http/2:    yes
 ```
 
 Look for the last line and check whether it says `yes`.
-
-## Install the Homebrew Apache w/ HTTP/2
-
-> UPDATE 2020-12-27: The Homebrew Apache doesn't seem to support the
-> `--with-http2` option anymore (nor the mpm-event one).
-
-Before you install mod_swift, we highly recommend that you install or reinstall
-the Homebrew Apache w/ HTTP/2 and the MPM event module:
-
-    brew reinstall httpd --with-mpm-event --with-http2
-
-You can also add `--with-privileged-ports` if you want to use such.
 
 ## Useful tools
 
@@ -52,15 +38,10 @@ requests are done using HTTP/2. Right click the table view and select
 
 ### curl w/ HTTP/2 support
 
-On Homebrew you can easily install `curl` with HTTP/2 support:
-
-    brew reinstall curl --with-nghttp2 --with-openssl
-
-*IMPORTANT*: curl is Cellar only w/ Homebrew. To invoke it either adjust your
-`PATH` to include `/use/local/opt/curl/bin` or invoke curl with the full path:
+The system `curl` now comes with HTTP/2 support by default on macOS 12.
 
 ```shell
-/usr/local/opt/curl/bin/curl -v --insecure --http2 https://localhost:8442/hello
+curl -v --insecure --http2 https://localhost:8442/hello
 ```
 (--insecure is needed if you use it w/ the self-signed certificate coming w/
  mod_swift)
