@@ -12,21 +12,11 @@ pretty much anywhere.
 
 ## Install on macOS using Homebrew
 
-2022-05-07: macOS instructions are outdated. The Apache2 Homebrew setup
-            changed.
-
 Got no Homebrew? [Get it!](https://brew.sh)
 
-> UPDATE 2020-12-27: The Homebrew Apache doesn't seem to support the
-> `--with-http2` and `--with-mpm-event` options anymore.
-> Same for `--with-sqlite` and `--with-postgresql`.
+Install Apache2:
 
-Before you install mod_swift, we highly recommend that you install or reinstall
-the Homebrew Apache w/ HTTP/2 and the MPM event module:
-
-    brew reinstall httpd --with-mpm-event --with-http2
-
-You can also add `--with-privileged-ports` if you want to use such.
+    brew install httpd
 
 Then add the mod_swift tap and install mod_swift:
 
@@ -67,18 +57,22 @@ That puts mod_swift into `/usr/local`. If you want to have it in `/usr`, do:
 
 You can call `swift apache validate` to make sure the installation is OK:
 
-    $ swift apache validate
-    The Swift Apache build environment looks sound.
-    
-    srcroot:   /Users/helge/dev/Swift/Apex3
-    module:    mods_Apex3
-    config:    debug
-    product:   /Users/helge/dev/Swift/Apex3/.build/mods_Apex3.so
-    apxs:      /usr/local/bin/apxs
-    mod_swift: /usr/local
-    swift:     5.0.1
-    cert:      self-signed-mod_swift-localhost-server.crt
-    http/2:    yes
+```
+$ swift apache validate
+swift-driver version: 1.45.2 The Swift Apache build environment looks sound.
+
+  srcroot:   /Users/helge/tmp/mods_helloworld
+  module:    mods_helloworld
+  config:    debug
+  product:   /Users/helge/tmp/mods_helloworld/.build/mods_helloworld.so
+  apxs:      /opt/homebrew/bin/apxs
+  moddir:    /opt/homebrew/lib/httpd/modules
+  relmoddir: /
+  mod_swift: /opt/homebrew/opt/mod_swift
+  swift:     5.6.0
+  cert:      self-signed-mod_swift-localhost-server.crt
+  http/2:    yes
+```
 
 ## Troubleshooting
 
