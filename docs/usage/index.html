@@ -1,154 +1,132 @@
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <meta name="author" content="ZeeZide GmbH">
-  <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Using mod_swift - mod_swift</title>
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
-
-  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
-  <link href="../extra.css" rel="stylesheet">
-  
-  <script>
-    // Current page data
-    var mkdocs_page_name = "Using mod_swift";
-    var mkdocs_page_input_path = "usage.md";
-    var mkdocs_page_url = "/usage/";
-  </script>
-  
-  <script src="../js/jquery-2.1.1.min.js" defer></script>
-  <script src="../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script> 
-  
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="ZeeZide GmbH" /><link rel="canonical" href="http://mod-swift.org/usage/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Using mod_swift - mod_swift</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link href="../extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Using mod_swift";
+        var mkdocs_page_input_path = "usage.md";
+        var mkdocs_page_url = "/usage/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
 </head>
 
 <body class="wy-body-for-nav" role="document">
 
   <div class="wy-grid-for-nav">
-
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href=".." class="icon icon-home"> mod_swift</a>
-        <div role="search">
+          <a href=".." class="icon icon-home"> mod_swift
+        </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	<ul class="current">
-	  
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="..">Introduction</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../install/">Installation</a>
-	    </li>
-          
-            <li class="toctree-l1 current">
-		
-    <a class="current" href="./">Using mod_swift</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l2"><a href="#hello-world">Hello World</a></li>
-    
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Introduction</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../install/">Installation</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Using mod_swift</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#setup-module">Setup Module</a>
         <ul>
-        
-            <li><a class="toctree-l3" href="#setup-module">Setup Module</a></li>
-        
-            <li><a class="toctree-l3" href="#build-module">Build Module</a></li>
-        
-            <li><a class="toctree-l3" href="#run-module">Run Module</a></li>
-        
+    <li class="toctree-l3"><a class="reference internal" href="#explanation-of-the-source">Explanation of the Source</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#module-structure">Module Structure</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#apachemain">ApacheMain()</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#register_hooks">register_hooks</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#mods_helloworldhandler">mods_helloworldHandler</a>
+    </li>
         </ul>
-    
-
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#build-module">Build Module</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#run-module">Run Module</a>
+    </li>
     </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../configtemplates/">Configuration Templates</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../tools/">Tools Reference</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../apacheexpress/">ApacheExpress</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../http2/">HTTP/2</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../mod_dbd/">SQL Database Access</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../links/">Link Collection</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../about/">About</a>
-	    </li>
-          
-        </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../configtemplates/">Configuration Templates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tools/">Tools Reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../apacheexpress/">ApacheExpress</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../http2/">HTTP/2</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../mod_dbd/">SQL Database Access</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../links/">Link Collection</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../about/">About</a>
+                </li>
+              </ul>
       </div>
-      &nbsp;
+    </div>
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="..">mod_swift</a>
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">mod_swift</a>
+        
       </nav>
-
-      
       <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="..">Docs</a> &raquo;</li>
-    
-      
-    
-    <li>Using mod_swift</li>
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Using mod_swift</li>
     <li class="wy-breadcrumbs-aside">
-      
         <a href="https://github.com/modswift/edit/master/docs/usage.md"
           class="icon icon-github"> Edit on GitHub</a>
-      
     </li>
   </ul>
   <hr/>
 </div>
-          <div role="main">
-            <div class="section">
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
               
                 <h1 id="hello-world">Hello World</h1>
 <p>Note: mod_swift only provides a very low level raw API. If you want something
@@ -166,7 +144,6 @@ The Swift Apache build environment looks sound.
   apxs:      /usr/local/bin/apxs
   mod_swift: /usr/local/opt/mod_swift
 </code></pre>
-
 <p>This creates a Swift Package Manager module and places an example Apache entry
 point into it:</p>
 <pre><code>$ tree
@@ -178,9 +155,8 @@ point into it:</p>
 
 2 directory, 2 files
 </code></pre>
-
 <p>The <code>Package.swift</code> just loads the Apache wrapper module we provide:</p>
-<pre><code class="swift">import PackageDescription
+<pre><code class="language-swift">import PackageDescription
 
 let package = Package(
     name: &quot;mods_helloworld&quot;,
@@ -194,11 +170,10 @@ let package = Package(
     ]    
 )
 </code></pre>
-
 <p>The <code>mods_helloworld.swift</code> source file contains a demo Apache module. The
 file can be named anything (but main.swift, which would produce a tool instead
 of a library ;-)</p>
-<pre><code class="swift">import CApache
+<pre><code class="language-swift">import CApache
 import Apache
 
 var module = CApache.module(name: &quot;mods_helloworld&quot;)
@@ -236,16 +211,14 @@ public func ApacheMain(cmd: UnsafeMutablePointer&lt;cmd_parms&gt;) {
   assert(rc == APR_SUCCESS, &quot;Could not add Swift module!&quot;)
 }
 </code></pre>
-
 <h3 id="explanation-of-the-source">Explanation of the Source</h3>
 <h4 id="module-structure">Module Structure</h4>
 <p>At the top this prepares the Apache module structure. The structure identifies
 our module within Apache. It contains the name, links to our callbacks, and
 optionally configuration data (yes, you can also add your own configuration
 directives to the Apache config).</p>
-<pre><code class="swift">var module = CApache.module(name: &quot;mods_helloworld&quot;)
+<pre><code class="language-swift">var module = CApache.module(name: &quot;mods_helloworld&quot;)
 </code></pre>
-
 <p>Which is registered at the bottom, in the <code>ApacheMain</code> function:</p>
 <h4 id="apachemain">ApacheMain()</h4>
 <p><code>ApacheMain</code> is the primary entry point which is called by mod_swift when it
@@ -254,14 +227,13 @@ The <code>@_cdecl</code> isn't actually required in this case, but can be necess
 complex setups. It tells Apache where to find the entry
 function (Apache being written in C, needs to have a C name, which often, but
 not always can be derived - the cdecl makes it explicit).</p>
-<pre><code class="swift">@_cdecl(&quot;ApacheMain&quot;)
+<pre><code class="language-swift">@_cdecl(&quot;ApacheMain&quot;)
 public func ApacheMain(cmd: UnsafeMutablePointer&lt;cmd_parms&gt;) {
   module.register_hooks = register_hooks
 
   let rc = apz_register_swift_module(cmd, &amp;module)
 }
 </code></pre>
-
 <p>Within the ApacheMain function, we attach the <code>register_hooks</code> callback to
 the module. And after that, register our Swift module as a regular Apache
 module.
@@ -269,12 +241,11 @@ When Apache starts up, it runs its configuration process (actually twice,
 checkout the module devguide for more info).
 A part of that is registering the module hooks, in our example:</p>
 <h4 id="register_hooks">register_hooks</h4>
-<pre><code class="swift">fileprivate func register_hooks(pool: OpaquePointer?) {
+<pre><code class="language-swift">fileprivate func register_hooks(pool: OpaquePointer?) {
   // hookup the handlers you want
   ap_hook_handler(mods_helloworldHandler, nil, nil, APR_HOOK_MIDDLE)
 }
 </code></pre>
-
 <p>There are hooks which allow you to add callbacks to pretty much any part of
 Apache (configuration, process handling, path translation, authorization, etc.).
 In our simple case we just register a so called 'handler'.
@@ -285,7 +256,7 @@ Lets look at our handler:</p>
 <h4 id="mods_helloworldhandler">mods_helloworldHandler</h4>
 <p>Again, you can use any name. This is just a generated one. Also, you can have as
 many handlers as you want!</p>
-<pre><code class="swift">func mods_helloworldHandler(p: UnsafeMutablePointer&lt;request_rec&gt;?) -&gt; Int32 {
+<pre><code class="language-swift">func mods_helloworldHandler(p: UnsafeMutablePointer&lt;request_rec&gt;?) -&gt; Int32 {
   var req = ApacheRequest(raw: p!)
   req.contentType = &quot;text/html; charset=ascii&quot;
 ...
@@ -294,7 +265,6 @@ many handlers as you want!</p>
   return OK
 }
 </code></pre>
-
 <p>The argument this function receives is the raw Apache C structure representing
 the current HTTP request. First thing we do is wrap it in a <code>ApacheRequest</code>
 Swift object, to make the API nicer (you can still call all Apache C API on the
@@ -321,7 +291,6 @@ Resolving https://github.com/modswift/Apache.git at 0.5.0
 $ ls -hl .build/mods_helloworld.so
 -rwxr-xr-x  1 helge  staff   173K 12 Mai 15:29 .build/mods_helloworld.so
 </code></pre>
-
 <h2 id="run-module">Run Module</h2>
 <p>The <code>swift apache serve</code> command will generate an Apache configuration and
 start Apache with it.
@@ -335,37 +304,27 @@ Note: DocRoot /usr/local/var/www/htdocs
 Starting Apache on port 8042/8442:
 GET /helloworld/ 200 715 - 0ms
 </code></pre>
-
 <p>Note of interest: <code>0ms</code>, the duration of the request. Yes, it is <em>that</em> fast ;-)</p>
 <p>In case you wonder, the generated Apache configuration can be found in 
 <code>.build/debug/apache.conf</code>.</p>
               
             </div>
-          </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../install/" class="btn btn-neutral float-left" title="Installation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
         <a href="../configtemplates/" class="btn btn-neutral float-right" title="Configuration Templates">Next <span class="icon icon-circle-arrow-right"></span></a>
-      
-      
-        <a href="../install/" class="btn btn-neutral" title="Installation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-      
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <!-- Copyright etc -->
-    
       <p>© ZeeZide GmbH 2018</p>
-    
   </div>
 
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
-      
+          
         </div>
       </div>
 
@@ -373,22 +332,30 @@ GET /helloworld/ 200 715 - 0ms
 
   </div>
 
-  <div class="rst-versions" role="note" style="cursor: pointer">
-    <span class="rst-current-version" data-toggle="rst-current-version">
-      
-          <a href="https://github.com/modswift/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
-      
-      
-        <span><a href="../install/" style="color: #fcfcfc;">&laquo; Previous</a></span>
-      
-      
-        <span style="margin-left: 15px"><a href="../configtemplates/" style="color: #fcfcfc">Next &raquo;</a></span>
-      
-    </span>
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/modswift/" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../install/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../configtemplates/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
 </div>
     <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
     <script src="../js/theme.js" defer></script>
       <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
 
 </body>
 </html>

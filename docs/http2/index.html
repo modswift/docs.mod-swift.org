@@ -1,156 +1,124 @@
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <meta name="author" content="ZeeZide GmbH">
-  <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>HTTP/2 - mod_swift</title>
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
-
-  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
-  <link href="../extra.css" rel="stylesheet">
-  
-  <script>
-    // Current page data
-    var mkdocs_page_name = "HTTP/2";
-    var mkdocs_page_input_path = "http2.md";
-    var mkdocs_page_url = "/http2/";
-  </script>
-  
-  <script src="../js/jquery-2.1.1.min.js" defer></script>
-  <script src="../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script> 
-  
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="ZeeZide GmbH" /><link rel="canonical" href="http://mod-swift.org/http2/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>HTTP/2 - mod_swift</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link href="../extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "HTTP/2";
+        var mkdocs_page_input_path = "http2.md";
+        var mkdocs_page_url = "/http2/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
 </head>
 
 <body class="wy-body-for-nav" role="document">
 
   <div class="wy-grid-for-nav">
-
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href=".." class="icon icon-home"> mod_swift</a>
-        <div role="search">
+          <a href=".." class="icon icon-home"> mod_swift
+        </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	<ul class="current">
-	  
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="..">Introduction</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../install/">Installation</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../usage/">Using mod_swift</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../configtemplates/">Configuration Templates</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../tools/">Tools Reference</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../apacheexpress/">ApacheExpress</a>
-	    </li>
-          
-            <li class="toctree-l1 current">
-		
-    <a class="current" href="./">HTTP/2</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l2"><a href="#http2">HTTP/2</a></li>
-    
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Introduction</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../install/">Installation</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../usage/">Using mod_swift</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../configtemplates/">Configuration Templates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tools/">Tools Reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../apacheexpress/">ApacheExpress</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">HTTP/2</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#check-whether-http2-is-available">Check whether HTTP/2 is available</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#useful-tools">Useful tools</a>
         <ul>
-        
-            <li><a class="toctree-l3" href="#check-whether-http2-is-available">Check whether HTTP/2 is available</a></li>
-        
-            <li><a class="toctree-l3" href="#install-the-homebrew-apache-w-http2">Install the Homebrew Apache w/ HTTP/2</a></li>
-        
-            <li><a class="toctree-l3" href="#useful-tools">Useful tools</a></li>
-        
-            <li><a class="toctree-l3" href="#links">Links</a></li>
-        
+    <li class="toctree-l3"><a class="reference internal" href="#chrome-developer-tools">Chrome Developer Tools</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#curl-w-http2-support">curl w/ HTTP/2 support</a>
+    </li>
         </ul>
-    
-
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#links">Links</a>
+    </li>
     </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../mod_dbd/">SQL Database Access</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../links/">Link Collection</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../about/">About</a>
-	    </li>
-          
-        </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../mod_dbd/">SQL Database Access</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../links/">Link Collection</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../about/">About</a>
+                </li>
+              </ul>
       </div>
-      &nbsp;
+    </div>
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="..">mod_swift</a>
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">mod_swift</a>
+        
       </nav>
-
-      
       <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="..">Docs</a> &raquo;</li>
-    
-      
-    
-    <li>HTTP/2</li>
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>HTTP/2</li>
     <li class="wy-breadcrumbs-aside">
-      
         <a href="https://github.com/modswift/edit/master/docs/http2.md"
           class="icon icon-github"> Edit on GitHub</a>
-      
     </li>
   </ul>
   <hr/>
 </div>
-          <div role="main">
-            <div class="section">
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
               
                 <h1 id="http2">HTTP/2</h1>
 <p>If your server provides the <code>mod_http2</code> module, <code>swift apache</code> will
@@ -160,40 +128,30 @@ the HTTP/2 module.</p>
 <p>To check whether mod_swift did detect the HTTP/2 module successfully, you can
 run:</p>
 <pre><code>$ swift apache validate
-The Swift Apache build environment looks sound.
+swift-driver version: 1.45.2 The Swift Apache build environment looks sound.
 
-  srcroot:   /Users/helge/tmp/tests/mods_helloworld
+  srcroot:   /Users/helge/tmp/mods_helloworld
   module:    mods_helloworld
   config:    debug
-  product:   /Users/helge/tmp/tests/mods_helloworld/.build/mods_helloworld.so
-  apxs:      /usr/local/bin/apxs
-  mod_swift: /usr/local/opt/mod_swift
-  swift:     3.0.2
+  product:   /Users/helge/tmp/mods_helloworld/.build/mods_helloworld.so
+  apxs:      /opt/homebrew/bin/apxs
+  moddir:    /opt/homebrew/lib/httpd/modules
+  relmoddir: /
+  mod_swift: /opt/homebrew/opt/mod_swift
+  swift:     5.6.0
   cert:      self-signed-mod_swift-localhost-server.crt
   http/2:    yes
 </code></pre>
-
 <p>Look for the last line and check whether it says <code>yes</code>.</p>
-<h2 id="install-the-homebrew-apache-w-http2">Install the Homebrew Apache w/ HTTP/2</h2>
-<p>Before you install mod_swift, we highly recommend that you install or reinstall
-the Homebrew Apache w/ HTTP/2 and the MPM event module:</p>
-<pre><code>brew reinstall httpd --with-mpm-event --with-http2
-</code></pre>
-<p>You can also add <code>--with-privileged-ports</code> if you want to use such.</p>
 <h2 id="useful-tools">Useful tools</h2>
 <h3 id="chrome-developer-tools">Chrome Developer Tools</h3>
 <p>You can use the <code>Network</code> tab in the Chrome Developer Tools to check whether
 requests are done using HTTP/2. Right click the table view and select
 'Protocol'.</p>
 <h3 id="curl-w-http2-support">curl w/ HTTP/2 support</h3>
-<p>On Homebrew you can easily install <code>curl</code> with HTTP/2 support:</p>
-<pre><code>brew reinstall curl --with-nghttp2 --with-openssl
+<p>The system <code>curl</code> now comes with HTTP/2 support by default on macOS 12.</p>
+<pre><code class="language-shell">curl -v --insecure --http2 https://localhost:8442/hello
 </code></pre>
-<p><em>IMPORTANT</em>: curl is Cellar only w/ Homebrew. To invoke it either adjust your
-<code>PATH</code> to include <code>/use/local/opt/curl/bin</code> or invoke curl with the full path:</p>
-<pre><code class="shell">/usr/local/opt/curl/bin/curl -v --insecure --http2 https://localhost:8442/hello
-</code></pre>
-
 <p>(--insecure is needed if you use it w/ the self-signed certificate coming w/
  mod_swift)</p>
 <p>You can scan the output of curl to see whether it is actually using HTTP/2:</p>
@@ -209,38 +167,28 @@ requests are done using HTTP/2. Right click the table view and select
 &lt; HTTP/2 200
 ...
 </code></pre>
-
 <h2 id="links">Links</h2>
 <ul>
 <li><a href="https://icing.github.io/mod_h2/howto.html">how to h2 in apache</a></li>
 </ul>
               
             </div>
-          </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../apacheexpress/" class="btn btn-neutral float-left" title="ApacheExpress"><span class="icon icon-circle-arrow-left"></span> Previous</a>
         <a href="../mod_dbd/" class="btn btn-neutral float-right" title="SQL Database Access">Next <span class="icon icon-circle-arrow-right"></span></a>
-      
-      
-        <a href="../apacheexpress/" class="btn btn-neutral" title="ApacheExpress"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-      
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <!-- Copyright etc -->
-    
       <p>© ZeeZide GmbH 2018</p>
-    
   </div>
 
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
-      
+          
         </div>
       </div>
 
@@ -248,22 +196,30 @@ requests are done using HTTP/2. Right click the table view and select
 
   </div>
 
-  <div class="rst-versions" role="note" style="cursor: pointer">
-    <span class="rst-current-version" data-toggle="rst-current-version">
-      
-          <a href="https://github.com/modswift/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
-      
-      
-        <span><a href="../apacheexpress/" style="color: #fcfcfc;">&laquo; Previous</a></span>
-      
-      
-        <span style="margin-left: 15px"><a href="../mod_dbd/" style="color: #fcfcfc">Next &raquo;</a></span>
-      
-    </span>
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/modswift/" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../apacheexpress/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../mod_dbd/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
 </div>
     <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
     <script src="../js/theme.js" defer></script>
       <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
 
 </body>
 </html>

@@ -11,7 +11,7 @@ theme:       readthedocs
 theme_dir:   custom_theme
 extra_css:   [ extra.css ]
 
-pages:
+nav:
   - 'Introduction':            'index.md'
   - 'Installation':            'install.md'
   - 'Using mod_swift':         'usage.md'

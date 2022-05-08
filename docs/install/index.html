@@ -1,156 +1,120 @@
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <meta name="author" content="ZeeZide GmbH">
-  <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Installation - mod_swift</title>
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
-
-  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
-  <link href="../extra.css" rel="stylesheet">
-  
-  <script>
-    // Current page data
-    var mkdocs_page_name = "Installation";
-    var mkdocs_page_input_path = "install.md";
-    var mkdocs_page_url = "/install/";
-  </script>
-  
-  <script src="../js/jquery-2.1.1.min.js" defer></script>
-  <script src="../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script> 
-  
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="ZeeZide GmbH" /><link rel="canonical" href="http://mod-swift.org/install/" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Installation - mod_swift</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link href="../extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Installation";
+        var mkdocs_page_input_path = "install.md";
+        var mkdocs_page_url = "/install/";
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
 </head>
 
 <body class="wy-body-for-nav" role="document">
 
   <div class="wy-grid-for-nav">
-
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href=".." class="icon icon-home"> mod_swift</a>
-        <div role="search">
+          <a href=".." class="icon icon-home"> mod_swift
+        </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	<ul class="current">
-	  
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="..">Introduction</a>
-	    </li>
-          
-            <li class="toctree-l1 current">
-		
-    <a class="current" href="./">Installation</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l2"><a href="#mod_swift-installation">mod_swift Installation</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l3" href="#install-on-macos-using-homebrew">Install on macOS using Homebrew</a></li>
-        
-            <li><a class="toctree-l3" href="#install-on-linux-or-macos-wo-homebrew">Install on Linux (or macOS w/o Homebrew)</a></li>
-        
-            <li><a class="toctree-l3" href="#check-whether-the-installation-is-ok">Check whether the installation is OK</a></li>
-        
-            <li><a class="toctree-l3" href="#troubleshooting">Troubleshooting</a></li>
-        
-        </ul>
-    
-
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Introduction</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="./">Installation</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#install-on-macos-using-homebrew">Install on macOS using Homebrew</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#install-on-linux-or-macos-wo-homebrew">Install on Linux (or macOS w/o Homebrew)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#check-whether-the-installation-is-ok">Check whether the installation is OK</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#troubleshooting">Troubleshooting</a>
+    </li>
     </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../usage/">Using mod_swift</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../configtemplates/">Configuration Templates</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../tools/">Tools Reference</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../apacheexpress/">ApacheExpress</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../http2/">HTTP/2</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../mod_dbd/">SQL Database Access</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../links/">Link Collection</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../about/">About</a>
-	    </li>
-          
-        </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../usage/">Using mod_swift</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../configtemplates/">Configuration Templates</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../tools/">Tools Reference</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../apacheexpress/">ApacheExpress</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../http2/">HTTP/2</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../mod_dbd/">SQL Database Access</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../links/">Link Collection</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../about/">About</a>
+                </li>
+              </ul>
       </div>
-      &nbsp;
+    </div>
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="..">mod_swift</a>
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">mod_swift</a>
+        
       </nav>
-
-      
       <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="..">Docs</a> &raquo;</li>
-    
-      
-    
-    <li>Installation</li>
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li><li>Installation</li>
     <li class="wy-breadcrumbs-aside">
-      
         <a href="https://github.com/modswift/edit/master/docs/install.md"
           class="icon icon-github"> Edit on GitHub</a>
-      
     </li>
   </ul>
   <hr/>
 </div>
-          <div role="main">
-            <div class="section">
+
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
               
                 <h1 id="mod_swift-installation">mod_swift Installation</h1>
 <p>mod_swift should install fine on pretty much any Unix system that can run
@@ -162,11 +126,9 @@ custom install.</p>
 pretty much anywhere.</p>
 <h2 id="install-on-macos-using-homebrew">Install on macOS using Homebrew</h2>
 <p>Got no Homebrew? <a href="https://brew.sh">Get it!</a></p>
-<p>Before you install mod_swift, we highly recommend that you install or reinstall
-the Homebrew Apache w/ HTTP/2 and the MPM event module:</p>
-<pre><code>brew reinstall httpd --with-mpm-event --with-http2
+<p>Install Apache2:</p>
+<pre><code>brew install httpd
 </code></pre>
-<p>You can also add <code>--with-privileged-ports</code> if you want to use such.</p>
 <p>Then add the mod_swift tap and install mod_swift:</p>
 <pre><code>brew tap modswift/mod_swift
 brew install mod_swift
@@ -198,17 +160,19 @@ sudo make install
 <h2 id="check-whether-the-installation-is-ok">Check whether the installation is OK</h2>
 <p>You can call <code>swift apache validate</code> to make sure the installation is OK:</p>
 <pre><code>$ swift apache validate
-The Swift Apache build environment looks sound.
+swift-driver version: 1.45.2 The Swift Apache build environment looks sound.
 
-srcroot:   /Users/helge/dev/Swift/Apex3
-module:    mods_Apex3
-config:    debug
-product:   /Users/helge/dev/Swift/Apex3/.build/mods_Apex3.so
-apxs:      /usr/local/bin/apxs
-mod_swift: /usr/local
-swift:     5.0.1
-cert:      self-signed-mod_swift-localhost-server.crt
-http/2:    yes
+  srcroot:   /Users/helge/tmp/mods_helloworld
+  module:    mods_helloworld
+  config:    debug
+  product:   /Users/helge/tmp/mods_helloworld/.build/mods_helloworld.so
+  apxs:      /opt/homebrew/bin/apxs
+  moddir:    /opt/homebrew/lib/httpd/modules
+  relmoddir: /
+  mod_swift: /opt/homebrew/opt/mod_swift
+  swift:     5.6.0
+  cert:      self-signed-mod_swift-localhost-server.crt
+  http/2:    yes
 </code></pre>
 <h2 id="troubleshooting">Troubleshooting</h2>
 <p>If something isn't working in a Homebrew setup, check whether:</p>
@@ -221,31 +185,22 @@ or our
 <a href="http://slack.noze.io">Slack channel</a>.</p>
               
             </div>
-          </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href=".." class="btn btn-neutral float-left" title="Introduction"><span class="icon icon-circle-arrow-left"></span> Previous</a>
         <a href="../usage/" class="btn btn-neutral float-right" title="Using mod_swift">Next <span class="icon icon-circle-arrow-right"></span></a>
-      
-      
-        <a href=".." class="btn btn-neutral" title="Introduction"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-      
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <!-- Copyright etc -->
-    
       <p>© ZeeZide GmbH 2018</p>
-    
   </div>
 
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
-      
+          
         </div>
       </div>
 
@@ -253,22 +208,30 @@ or our
 
   </div>
 
-  <div class="rst-versions" role="note" style="cursor: pointer">
-    <span class="rst-current-version" data-toggle="rst-current-version">
-      
-          <a href="https://github.com/modswift/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
-      
-      
-        <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
-      
-      
-        <span style="margin-left: 15px"><a href="../usage/" style="color: #fcfcfc">Next &raquo;</a></span>
-      
-    </span>
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/modswift/" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../usage/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
 </div>
     <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
     <script src="../js/theme.js" defer></script>
       <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
 
 </body>
 </html>
